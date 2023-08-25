@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- // icono navegador -->
+  <link rel="icon" href="">
+
   <title>Markito Custom Shop</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -45,11 +48,14 @@
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="vistas/dist/js/demo.js"></script> -->
 
-<body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
+<body class="hold-transition skin-blue sidebar-collapse sidebar-mini login-page">
 <!-- Site wrapper -->
-<div class="wrapper">
 
     <?php
+
+    if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok" ){
+
+    echo '<div class="wrapper">';
 
     // HEADER
 
@@ -74,7 +80,15 @@
 
         include "modulos/".$_GET["ruta"]."php";
 
+      } else {
+
+        include "modulos/404.php";
+        
       }
+
+    } else {
+
+      include "inicio.php";
 
     }
 
@@ -83,10 +97,13 @@
 
     include "modulos/footer.php";
 
+    echo '</div>';
+    // <!-- ./wrapper -->
+  } else {
+    include "modulos/login.php";
+  }
     ?>
 
-</div>
-<!-- ./wrapper -->
 <script src="vistas/js/plantilla.js"></script>
 </body>
 </html>
